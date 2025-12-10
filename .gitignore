@@ -9,6 +9,7 @@ MCP-Server/node_modules/
 .vscode/*
 !.vscode/settings.json
 !.vscode/mcp.json
+!.vscode/GIT_SETUP.md
 *.user
 *.suo
 *.cache
