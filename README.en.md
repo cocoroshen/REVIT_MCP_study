@@ -61,6 +61,62 @@ REVIT-MCP/
 > 💡 **Important Note**: This tutorial uses Revit 2022 as an example, but applies to versions 2022, 2023, and 2024.  
 > When installing, adjust the folder names according to your Revit version (see version mapping table in each step below).
 
+## ⚠️ First-Time Setup for Git Clone Users
+
+If you obtained this project via `git clone`, **you must complete the following steps first**, otherwise MCP Server will not work:
+
+> [!IMPORTANT]
+> The following files are **NOT included in the Git repository** (excluded by `.gitignore`):
+> - `MCP-Server/build/` - MCP Server build output
+> - `MCP-Server/node_modules/` - Node.js dependencies
+> - `MCP/MCP/bin/` - Revit Add-in build output
+
+### Required Steps
+
+#### 1️⃣ Install Node.js (if not already installed)
+
+```powershell
+# Check if installed
+node --version
+
+# If not installed, go to https://nodejs.org to download LTS version
+```
+
+#### 2️⃣ Build MCP Server
+
+```powershell
+# Enter MCP-Server folder
+cd "your-project-path/MCP-Server"
+
+# Install dependencies
+npm install
+
+# Build TypeScript
+npm run build
+```
+
+#### 3️⃣ Configure AI Platform Settings
+
+Paths in configuration files need to be modified according to your environment:
+
+- **Gemini CLI** (`MCP-Server/gemini_mcp_config.json`):
+  ```json
+  "args": ["your-actual-path/MCP-Server/build/index.js"]
+  ```
+
+- **Claude Desktop**: Manually configure the path in the application
+
+- **VS Code / Antigravity** (`.vscode/mcp.json`):
+  Uses `${workspaceFolder}` variable, **no modification needed**
+
+#### 4️⃣ Get Revit Add-in
+
+Choose one:
+- **Method A (Recommended)**: Run `scripts/install-addon.bat` to auto-download and install
+- **Method B**: Build the `MCP/MCP/` project yourself (requires Visual Studio and Revit SDK)
+
+---
+
 ## 📦 Installation Steps
 
 #### Step 1: Install Revit Add-in (Just Copy Files)
